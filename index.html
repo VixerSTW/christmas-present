@@ -54,6 +54,10 @@
       background-color: green;
       color: black;
     }
+    .typing {
+      white-space: pre-wrap;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -61,20 +65,38 @@
     <div id="message">Enter the code:</div>
     <input id="codeInput" class="input-box" type="text" placeholder="Type the code here">
     <button id="submitButton" class="button">Submit</button>
+    <div id="animatedMessage" class="typing"></div>
   </div>
 
   <script>
-    const correctCode = "auiq"; // Replace with your specific code
+    const correctCode = "ijay"; // Replace with your specific code
     const messageElement = document.getElementById("message");
     const codeInput = document.getElementById("codeInput");
     const submitButton = document.getElementById("submitButton");
+    const animatedMessage = document.getElementById("animatedMessage");
 
+    // Function to type the message slowly
+    function typeMessage(text, speed) {
+      animatedMessage.textContent = ""; // Clear any existing text
+      let index = 0;
+
+      const typingInterval = setInterval(() => {
+        animatedMessage.textContent += text[index];
+        index++;
+        if (index >= text.length) {
+          clearInterval(typingInterval);
+        }
+      }, speed);
+    }
+
+    // Event listener for submit button
     submitButton.addEventListener("click", () => {
       const enteredCode = codeInput.value.trim();
       if (enteredCode === correctCode) {
-        messageElement.textContent = "Merry Christmas Viyen! I Hope You Like This Present!";
-        codeInput.style.display = "none";
-        submitButton.style.display = "none";
+        messageElement.textContent = ""; // Clear the prompt
+        codeInput.style.display = "none"; // Hide input box
+        submitButton.style.display = "none"; // Hide submit button
+        typeMessage("Merry Christmas Viyen!\nI Hope You Like This Present!", 100); // Type the message
       } else {
         messageElement.textContent = "Incorrect code. Try again!";
         codeInput.value = "";
