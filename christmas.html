@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retro TV Code Input</title>
+  <style>
+    body {
+      background-color: black;
+      color: green;
+      font-family: "Courier New", Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .tv-frame {
+      border: 10px solid green;
+      padding: 20px;
+      width: 600px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: black;
+      box-shadow: 0 0 50px green;
+    }
+    .input-box {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 20px;
+      text-align: center;
+      border: 2px solid green;
+      background-color: black;
+      color: white;
+      outline: none;
+      width: 80%;
+    }
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 20px;
+      cursor: pointer;
+      border: 2px solid green;
+      background-color: black;
+      color: white;
+      transition: 0.3s ease;
+    }
+    .button:hover {
+      background-color: green;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <div class="tv-frame">
+    <div id="message">Enter the code:</div>
+    <input id="codeInput" class="input-box" type="text" placeholder="Type the code here">
+    <button id="submitButton" class="button">Submit</button>
+  </div>
+
+  <script>
+    const correctCode = "auiq"; // Replace with your specific code
+    const messageElement = document.getElementById("message");
+    const codeInput = document.getElementById("codeInput");
+    const submitButton = document.getElementById("submitButton");
+
+    submitButton.addEventListener("click", () => {
+      const enteredCode = codeInput.value.trim();
+      if (enteredCode === correctCode) {
+        messageElement.textContent = "Merry Christmas Viyen! I Hope You Like This Present!";
+        codeInput.style.display = "none";
+        submitButton.style.display = "none";
+      } else {
+        messageElement.textContent = "Incorrect code. Try again!";
+        codeInput.value = "";
+      }
+    });
+  </script>
+</body>
+</html>
